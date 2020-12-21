@@ -1,5 +1,6 @@
 <template>
   <div class="todo-list">
+      <AddTodo></AddTodo>
     <ul>
       <li v-for="todo in todos" :key="todo.id" :class="todo.completed ? 'completed' : ''">
         {{ todo.title }}
@@ -12,9 +13,13 @@
 </template>
 
 <script>
+import AddTodo from './AddTodos'
 import { mapActions, mapMutations, mapState } from 'vuex'
 export default {
   name: "Todos",
+  components :{ 
+  AddTodo 
+  },
   computed: mapState(['todos']),
 
   methods : {...mapMutations (['MARK_COMPLETE']),

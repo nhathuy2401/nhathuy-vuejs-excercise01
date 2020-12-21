@@ -17,6 +17,9 @@ const storeData = {
     actions: {
         deleteTodo({ commit }, todoId) {
             commit('DELETE_TODO', todoId)
+        },
+        addTodo({ commit }, newTodo) {
+            commit('ADD_TODO', newTodo)
         }
 
     },
@@ -33,6 +36,10 @@ const storeData = {
         },
         DELETE_TODO(state, todoId) {
             state.todos = state.todos.filter(todo => todo.id !== todoId)
+        },
+        ADD_TODO(state, newTodo) {
+            state.todos.unshift(newTodo);
+
         }
 
     }
