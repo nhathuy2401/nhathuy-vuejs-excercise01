@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import axios from 'axios'
 
 
 Vue.use(Vuex)
@@ -7,19 +8,26 @@ Vue.use(Vuex)
 
 const storeData = {
     state: {
-        todos: [
-            { id: 1, title: "todo 1 ", completed: true },
-            { id: 2, title: "todo 2 ", completed: false },
-            { id: 3, title: "todo 4 ", completed: true },
-            { id: 4, title: "todo 5 ", completed: false }
-        ]
+        todos: []
     },
     actions: {
+
         deleteTodo({ commit }, todoId) {
             commit('DELETE_TODO', todoId)
         },
         addTodo({ commit }, newTodo) {
             commit('ADD_TODO', newTodo)
+        },
+
+        async getTodos({ commit }) {
+            try {
+                const reponse = await axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+                commit('SET_TODOS', reponse.data)
+
+            } catch (error) {
+                console.log(error)
+
+            }
         }
 
     },
@@ -40,6 +48,9 @@ const storeData = {
         ADD_TODO(state, newTodo) {
             state.todos.unshift(newTodo);
 
+        },
+        SET_TODOS(state, todos) {
+            state.todos = todos
         }
 
     }

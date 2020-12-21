@@ -21,9 +21,12 @@ export default {
   AddTodo 
   },
   computed: mapState(['todos']),
+  created(){
+      this.getTodos();
+  },
 
   methods : {...mapMutations (['MARK_COMPLETE']),
-  ...mapActions(['deleteTodo'])}
+  ...mapActions(['deleteTodo','getTodos'])}
 
        
       
