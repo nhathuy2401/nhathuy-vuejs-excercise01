@@ -4,28 +4,27 @@
       <li v-for="todo in todos" :key="todo.id" :class="todo.completed ? 'completed' : ''">
         {{ todo.title }}
 
-        <input type="checkbox" :checked="todo.completed" @change="markTodoCompleted(todo.id)" />
-        <button type="submit">Done</button>
+        <input type="checkbox" :checked="todo.completed" @change="MARK_COMPLETE(todo.id)" />
+        <button type="submit" @click="deleteTodo(todo.id)">Delete</button>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 export default {
   name: "Todos",
   computed: mapState(['todos']),
 
-  methods : {
-      markTodoCompleted(todoId){
-          this.$store.commit('MARK_COMPLETE',todoId)
-      }
+  methods : {...mapMutations (['MARK_COMPLETE']),
+  ...mapActions(['deleteTodo'])}
 
-  }
-    
+       
+      
+
   
-};
+}
 </script>
 
 

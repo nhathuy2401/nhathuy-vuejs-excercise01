@@ -14,6 +14,12 @@ const storeData = {
             { id: 4, title: "todo 5 ", completed: false }
         ]
     },
+    actions: {
+        deleteTodo({ commit }, todoId) {
+            commit('DELETE_TODO', todoId)
+        }
+
+    },
     getters: {
         competeTodo: state => state.todos.filter(todo => todo.completed)
 
@@ -24,6 +30,9 @@ const storeData = {
                 if (todo.id === todoId) todo.completed = !todo.completed
                 return todo
             })
+        },
+        DELETE_TODO(state, todoId) {
+            state.todos = state.todos.filter(todo => todo.id !== todoId)
         }
 
     }
