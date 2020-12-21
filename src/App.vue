@@ -1,17 +1,21 @@
 <template>
   <div id="app">
     <Todos></Todos>
+    <Status></Status>
     
   </div>
 </template>
 
 <script>
 import Todos from './components/Todos'
+import Status from './components/Status'
 
 export default {
   name: 'App',
   components: {
-    Todos
+    Todos,
+    Status 
+
     
   }
 }
@@ -25,7 +29,7 @@ export default {
   text-align: center;
   background : rgb(219,219,219);
   margin : 20px auto ; 
-  
+
 
 }
 </style>
